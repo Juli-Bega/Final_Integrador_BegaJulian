@@ -1,58 +1,24 @@
+
 Shader "Custom/Greyscale"
 {
-    Properties
-    {
-        [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
-        [MainTexture] _BaseMap("Base Map", 2D) = "white" {}
-    }
-
     SubShader
     {
-        Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" }
+        Tags { "RenderType"="Opaque" }
+        ZTest Always ZWrite Off Cull Off Blend Off
 
         Pass
         {
             HLSLPROGRAM
-
-            #pragma vertex vert
+            #pragma vertex Vert
             #pragma fragment frag
-
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
-            struct Attributes
+            half4 frag(Varyings input) : SV_Target
             {
-                float4 positionOS : POSITION;
-                float2 uv : TEXCOORD0;
-            };
-
-            struct Varyings
-            {
-                float4 positionHCS : SV_POSITION;
-                float2 uv : TEXCOORD0;
-            };
-
-            TEXTURE2D(_BaseMap);
-            SAMPLER(sampler_BaseMap);
-
-            CBUFFER_START(UnityPerMaterial)
-                half4 _BaseColor;
-                float4 _BaseMap_ST;
-            CBUFFER_END
-
-            Varyings vert(Attributes IN)
-            {
-                Varyings OUT;
-                OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
-                OUT.uv = TRANSFORM_TEX(IN.uv, _BaseMap);
-                return OUT;
-            }
-
-            half4 frag(Varyings IN) : SV_Target
-            {
-                half4 color = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, IN.uv) * _BaseColor;
-                //float greyMath = color.x * 0.299 + color.y * 0.587 + color.z * 0.114;
-                half4 greyColor = half4 ( color.x * 0.299, color.y * 0.587, color.z * 0.114, color.w);
-                return greyColor;
+                half4 color = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, input.texcoord);
+                float grey = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
+                return half4(grey, grey, grey, color.a);
             }
             ENDHLSL
         }
