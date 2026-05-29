@@ -24,6 +24,7 @@ Shader "Custom/Greyscale"
                 //Obtenemos el color del pixel, marcamos el centro de la pantalla y calculamos la distancia entre el pixel y el centro.
                 half4 color = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, input.texcoord);
                 float2 uv = input.texcoord - 0.5;
+                uv.x *= _ScreenParams.x / _ScreenParams.y; //La pantalla no es cuadrada entonces necesita esto para que quede circular el area que se ve a color
                 float dist = length(uv);
 
                 // Calculamos si la distancia es exactamente la que está entre el limite del area a color y el grosor del borde ponemos el border color
