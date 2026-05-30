@@ -24,8 +24,6 @@ public class GreyscaleRenderPass : ScriptableRenderPass
     {
         var resourceData = frameData.Get<UniversalResourceData>();
 
-        Debug.Log("isActiveTargetBackBuffer: " + resourceData.isActiveTargetBackBuffer);
-
         if (resourceData.isActiveTargetBackBuffer)
             return;
 
@@ -47,7 +45,6 @@ public class GreyscaleRenderPass : ScriptableRenderPass
 
             builder.SetRenderFunc((PassData data, UnsafeGraphContext ctx) =>
             {
-                Debug.Log("=== EJECUTANDO BLIT ===");
                 var cmd = CommandBufferHelpers.GetNativeCommandBuffer(ctx.cmd);
                 Blitter.BlitCameraTexture(cmd, data.source, data.destination, data.material, 0);
             });

@@ -8,22 +8,26 @@ public class GreyscaleRendererFeature : ScriptableRendererFeature
     private Material _material;
     private GreyscaleRenderPass _pass;
 
+    private static readonly int CircleActiveId = Shader.PropertyToID("_CircleActive");
+
     public override void Create()
     {
         if (shader == null)
         {
-            Debug.LogError("Shader es null!");
+            Debug.LogError("GreyscaleRendererFeature: shader es null.");
             return;
         }
 
-        _material = new Material(shader);
-        Debug.Log("Material creado: " + _material);
+        if (_material == null)
+            _material = new Material(shader);
+
+        _material.SetFloat(CircleActiveId, 1f);
         _pass = new GreyscaleRenderPass(_material);
     }
-
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
-        if (_material == null) return;
+        if (_material == null || _pass == null) return;
+        if (renderingData.cameraData.cameraType != CameraType.Game) return;
         renderer.EnqueuePass(_pass);
     }
 
@@ -34,5 +38,21 @@ public class GreyscaleRendererFeature : ScriptableRendererFeature
             Destroy(_material);
         else
             DestroyImmediate(_material);
+    }
+
+    public void SetCircleActive(bool active)
+    {
+        if (_material == null)
+            Create();
+
+        if (_material == null)
+        {
+            Debug.LogError("GreyscaleRendererFeature: no se pudo recrear el material.");
+            return;
+        }
+
+        Debug.Log("SetCircleActive: " + active + " | material: " + _material.GetFloat(CircleActiveId));
+        _material.SetFloat(CircleActiveId, active ? 1f : 0f);
+        Debug.Log("Despues de set: " + _material.GetFloat(CircleActiveId));
     }
 }
