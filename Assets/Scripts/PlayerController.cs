@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private ShaderService _shaderService;
+    [SerializeField] private float _circleRadius = 0.25f;
 
     private bool _isCircleActive = true;
 
-    private void Start()
+    private IEnumerator Start()
     {
-        _isCircleActive = true;
+        yield return null;
+        _shaderService.SetCircleRadius(_circleRadius);
         _shaderService.EnableCircle();
     }
     private void Update()

@@ -4,6 +4,7 @@ Shader "Custom/Greyscale"
     Properties
     {
         _CircleActive ("Circle Active", Float) = 1
+        _CircleRadius ("Circle Radius", Float) = 0.25
     }
     SubShader
     {
@@ -18,11 +19,11 @@ Shader "Custom/Greyscale"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
-            #define RADIUS 0.25
             #define BORDER 0.003
             #define BORDER_COLOR half4(1, 0.5, 0.2, 1)
 
             float _CircleActive;
+            float _CircleRadius;
 
             half4 frag(Varyings input) : SV_Target
             {
@@ -38,10 +39,10 @@ Shader "Custom/Greyscale"
                 uv.x *= _ScreenParams.x / _ScreenParams.y;
                 float dist = length(uv);
 
-                if (dist < RADIUS)
+                if (dist < _CircleRadius)
                     return color;
 
-                if (dist < RADIUS + BORDER)
+                if (dist < _CircleRadius + BORDER)
                     return BORDER_COLOR;
 
                 return greyColor;

@@ -6,6 +6,7 @@ public class ShaderService : MonoBehaviour
     [SerializeField] private UniversalRendererData _rendererData;
 
     private GreyscaleRendererFeature _greyscaleFeature;
+    private float _currentCircleRadius;
 
     private void Awake()
     {
@@ -24,13 +25,22 @@ public class ShaderService : MonoBehaviour
 
     public void EnableCircle()
     {
-        Debug.Log("ShaderService: EnableCircle");
         _greyscaleFeature.SetCircleActive(true);
     }
 
     public void DisableCircle()
     {
-        Debug.Log("ShaderService: DisableCircle");
         _greyscaleFeature.SetCircleActive(false);
+    }
+
+    public void SetCircleRadius(float radius)
+    {
+        _currentCircleRadius = radius;
+        _greyscaleFeature.SetCircleRadius(radius);
+    }
+
+    public float GetCircleRadius()
+    {
+        return _currentCircleRadius;
     }
 }

@@ -9,19 +9,18 @@ public class GreyscaleRendererFeature : ScriptableRendererFeature
     private GreyscaleRenderPass _pass;
 
     private static readonly int CircleActiveId = Shader.PropertyToID("_CircleActive");
+    private static readonly int CircleRadiusId = Shader.PropertyToID("_CircleRadius");
 
     public override void Create()
     {
-        if (shader == null)
-        {
-            Debug.LogError("GreyscaleRendererFeature: shader es null.");
-            return;
-        }
+        if (shader == null) return;
+        
 
         if (_material == null)
             _material = new Material(shader);
 
         _material.SetFloat(CircleActiveId, 1f);
+        _material.SetFloat(CircleRadiusId, 0.25f);
         _pass = new GreyscaleRenderPass(_material);
     }
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
@@ -42,17 +41,14 @@ public class GreyscaleRendererFeature : ScriptableRendererFeature
 
     public void SetCircleActive(bool active)
     {
-        if (_material == null)
-            Create();
-
-        if (_material == null)
-        {
-            Debug.LogError("GreyscaleRendererFeature: no se pudo recrear el material.");
-            return;
-        }
-
-        Debug.Log("SetCircleActive: " + active + " | material: " + _material.GetFloat(CircleActiveId));
+        if (_material == null) Create();
+        if (_material == null) return;
         _material.SetFloat(CircleActiveId, active ? 1f : 0f);
-        Debug.Log("Despues de set: " + _material.GetFloat(CircleActiveId));
+    }
+    public void SetCircleRadius(float radius)
+    {
+        if (_material == null) Create();
+        if (_material == null) return;
+        _material.SetFloat(CircleRadiusId, radius);
     }
 }
