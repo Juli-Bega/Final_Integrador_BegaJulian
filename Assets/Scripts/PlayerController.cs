@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement();
         CameraMovment();
-        Flashlight();
+        PlayerInput();
     }
     private void PlayerMovement()
     {
@@ -78,8 +78,22 @@ public class PlayerController : MonoBehaviour
         _verticalRotation = Mathf.Clamp(_verticalRotation, -_verticalClamp, _verticalClamp);
         _cameraTransform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
     }
-    private void Flashlight()
+    private void PlayerInput()
     {
+        //Dejo esto solo para poder hacer mas facil el probar cosas en editor, borrar despues
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+        }
+        //////////////////////////////////////////////
+
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             _isCircleActive = !_isCircleActive;
