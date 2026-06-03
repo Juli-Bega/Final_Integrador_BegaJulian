@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 57129289}
   - component: {fileID: 57129290}
+  - component: {fileID: 57129291}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -164,7 +165,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7258abb23e8ad4f42959963218dff6cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _moveSpeed: 3
+  _acceleration: 10
+  _deceleration: 15
+  _cameraTransform: {fileID: 330585546}
+  _mouseSensitivity: 0.1
+  _verticalClamp: 80
   _shaderService: {fileID: 1043568059}
+  _circleRadius: 0.25
+  _gravity: -9.8
+--- !u!143 &57129291
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57129287}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &68222570
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +740,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.56562, y: -0.31650996, z: -8.46772}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
