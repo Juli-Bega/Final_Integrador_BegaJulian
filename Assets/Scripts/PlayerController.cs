@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     [Header("Gravedad")]
     [SerializeField] private float _gravity = -9.8f;
 
+    [Header("Scanner")]
+    [SerializeField] private ColorScanner _colorScanner;
+
     private float _verticalVelocity;
 
     private CharacterController _characterController;
@@ -38,8 +41,9 @@ public class PlayerController : MonoBehaviour
     private System.Collections.IEnumerator Start()
     {
         yield return null;
+        _colorScanner.StartScanning();
         _shaderService.SetCircleRadius(_circleRadius);
-        _shaderService.EnableCircle();
+        _shaderService.DisableCircle();
     }
     private void Update()
     {
@@ -99,9 +103,15 @@ public class PlayerController : MonoBehaviour
             _isCircleActive = !_isCircleActive;
 
             if (_isCircleActive)
+            {
                 _shaderService.EnableCircle();
+                _colorScanner.StartScanning();
+            }
             else
+            {
                 _shaderService.DisableCircle();
+                _colorScanner.StopScanning();
+            }
         }
     }
 }
