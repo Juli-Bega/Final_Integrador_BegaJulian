@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c4063b7f2ee894c8dde5a49643d577, type: 3}
   m_Name: GreyscaleRendererFeature
   m_EditorClassIdentifier: Assembly-CSharp::GreyscaleRendererFeature
-  m_Active: 1
+  m_Active: 0
   shader: {fileID: 4800000, guid: 821442162ae795848a021282cdcbb061, type: 3}
 --- !u!114 &7833122117494664109
 MonoBehaviour:
