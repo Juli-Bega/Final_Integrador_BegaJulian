@@ -1,15 +1,13 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class GreyscaleRendererFeature : ScriptableRendererFeature
+public class EnhancedVisionRendererFeature : ScriptableRendererFeature
 {
     public Shader shader;
 
     private Material _material;
-    private GreyscaleRenderPass _pass;
+    private EnhancedVisionRenderPass _pass;
 
-    private static readonly int CircleActiveId = Shader.PropertyToID("_CircleActive");
-    private static readonly int CircleRadiusId = Shader.PropertyToID("_CircleRadius");
 
     public override void Create()
     {
@@ -19,9 +17,7 @@ public class GreyscaleRendererFeature : ScriptableRendererFeature
         if (_material == null)
             _material = new Material(shader);
 
-        _material.SetFloat(CircleActiveId, 1f);
-        _material.SetFloat(CircleRadiusId, 0.25f);
-        _pass = new GreyscaleRenderPass(_material);
+        _pass = new EnhancedVisionRenderPass(_material);
     }
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
@@ -39,16 +35,11 @@ public class GreyscaleRendererFeature : ScriptableRendererFeature
             DestroyImmediate(_material);
     }
 
-    public void SetCircleActive(bool active)
+    public void EnableVision(bool active)
     {
         if (_material == null) Create();
         if (_material == null) return;
-        _material.SetFloat(CircleActiveId, active ? 1f : 0f);
+        SetActive(active);
     }
-    public void SetCircleRadius(float radius)
-    {
-        if (_material == null) Create();
-        if (_material == null) return;
-        _material.SetFloat(CircleRadiusId, radius);
-    }
+
 }

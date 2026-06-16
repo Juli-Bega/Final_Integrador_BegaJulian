@@ -1,11 +1,6 @@
 
-Shader "Custom/Greyscale"
+Shader "Custom/EnhancedVision"
 {
-    Properties
-    {
-        _CircleActive ("Circle Active", Float) = 1
-        _CircleRadius ("Circle Radius", Float) = 0.25
-    }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
@@ -19,11 +14,7 @@ Shader "Custom/Greyscale"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
-            #define BORDER 0.003
-            #define BORDER_COLOR half4(1, 0.5, 0.2, 1)
-
-            float _CircleActive;
-            float _CircleRadius;
+           
 
             half4 frag(Varyings input) : SV_Target
             {
@@ -32,19 +23,7 @@ Shader "Custom/Greyscale"
                 float grey = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
                 half4 greyColor = half4(grey, grey, grey, color.a);
 
-                if (_CircleActive < 0.5)
-                    return greyColor;
-
-                float2 uv = input.texcoord - 0.5;
-                uv.x *= _ScreenParams.x / _ScreenParams.y;
-                float dist = length(uv);
-
-                if (dist < _CircleRadius)
-                    return color;
-
-                if (dist < _CircleRadius + BORDER)
-                    return BORDER_COLOR;
-
+              
                 return greyColor;
             }
             ENDHLSL

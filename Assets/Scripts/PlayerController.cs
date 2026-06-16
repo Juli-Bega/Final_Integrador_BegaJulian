@@ -14,9 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _mouseSensitivity = 0.1f;
     [SerializeField] private float _verticalClamp = 80f;
 
-    [Header("Circulo")]
+    [Header("Shader")]
     [SerializeField] private ShaderService _shaderService;
-    [SerializeField] private float _circleRadius = 0.25f;
 
     [Header("Gravedad")]
     [SerializeField] private float _gravity = -9.8f;
@@ -26,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController _characterController;
     private Vector3 _currentVelocity;
     private float _verticalRotation;
-    private bool _isCircleActive = true;
+    private bool _isEnhancedVisionActive = true;
 
     private void Awake()
     {
@@ -38,8 +37,7 @@ public class PlayerController : MonoBehaviour
     private System.Collections.IEnumerator Start()
     {
         yield return null;
-        _shaderService.SetCircleRadius(_circleRadius);
-        _shaderService.DisableCircle();
+        _shaderService.VisionState(false);
     }
     private void Update()
     {
@@ -80,7 +78,7 @@ public class PlayerController : MonoBehaviour
     }
     private void PlayerInput()
     {
-        //Dejo esto solo para poder hacer mas facil el probar cosas en editor, borrar despues
+        //Dejo esto solo para poder hacer mas facil el probar cosas en editor
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -96,16 +94,8 @@ public class PlayerController : MonoBehaviour
 
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
-            _isCircleActive = !_isCircleActive;
-
-            if (_isCircleActive)
-            {
-                _shaderService.EnableCircle();
-            }
-            else
-            {
-                _shaderService.DisableCircle();
-            }
+            _isEnhancedVisionActive = !_isEnhancedVisionActive;
+            _shaderService.VisionState(_isEnhancedVisionActive);
         }
     }
 }

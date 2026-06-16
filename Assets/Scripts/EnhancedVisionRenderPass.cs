@@ -3,11 +3,11 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering.RenderGraphModule;
 
-public class GreyscaleRenderPass : ScriptableRenderPass
+public class EnhancedVisionRenderPass : ScriptableRenderPass
 {
     private Material _material;
 
-    public GreyscaleRenderPass(Material material)
+    public EnhancedVisionRenderPass(Material material)
     {
         _material = material;
         renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
@@ -30,11 +30,11 @@ public class GreyscaleRenderPass : ScriptableRenderPass
         TextureHandle source = resourceData.activeColorTexture;
 
         var descriptor = renderGraph.GetTextureDesc(source);
-        descriptor.name = "_GreyscaleTemp";
+        descriptor.name = "_EnhancedVisionTemp";
         descriptor.clearBuffer = false;
         TextureHandle destination = renderGraph.CreateTexture(descriptor);
 
-        using (var builder = renderGraph.AddUnsafePass<PassData>("Greyscale Blit", out var passData))
+        using (var builder = renderGraph.AddUnsafePass<PassData>("EnhancedVision Blit", out var passData))
         {
             passData.source = source;
             passData.destination = destination;
@@ -49,7 +49,7 @@ public class GreyscaleRenderPass : ScriptableRenderPass
                 Blitter.BlitCameraTexture(cmd, data.source, data.destination, data.material, 0);
             });
         }
-        using (var builder = renderGraph.AddUnsafePass<PassData>("Greyscale CopyBack", out var passData))
+        using (var builder = renderGraph.AddUnsafePass<PassData>("EnhancedVision CopyBack", out var passData))
         {
             passData.source = destination;
             passData.destination = source;

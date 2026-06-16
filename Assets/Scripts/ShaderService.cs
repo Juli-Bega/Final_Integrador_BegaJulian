@@ -5,42 +5,26 @@ public class ShaderService : MonoBehaviour
 {
     [SerializeField] private UniversalRendererData _rendererData;
 
-    private GreyscaleRendererFeature _greyscaleFeature;
-    private float _currentCircleRadius;
+    private EnhancedVisionRendererFeature _enhancedVisionFeature;
 
     private void Awake()
     {
         foreach (var feature in _rendererData.rendererFeatures)
         {
-            if (feature is GreyscaleRendererFeature greyscale)
+            if (feature is EnhancedVisionRendererFeature enhancedVision)
             {
-                _greyscaleFeature = greyscale;
+                _enhancedVisionFeature = enhancedVision;
                 break;
             }
         }
 
-        if (_greyscaleFeature == null)
-            Debug.LogError("ShaderService: No se encontró el GreyscaleRendererFeature.");
+        if (_enhancedVisionFeature == null)
+            Debug.LogError("ShaderService: No se encontró el enhancedVisionRendererFeature.");
     }
 
-    public void EnableCircle()
+    public void VisionState(bool state)
     {
-        _greyscaleFeature.SetCircleActive(true);
+        _enhancedVisionFeature.EnableVision(state);
     }
-
-    public void DisableCircle()
-    {
-        _greyscaleFeature.SetCircleActive(false);
-    }
-
-    public void SetCircleRadius(float radius)
-    {
-        _currentCircleRadius = radius;
-        _greyscaleFeature.SetCircleRadius(radius);
-    }
-
-    public float GetCircleRadius()
-    {
-        return _currentCircleRadius;
-    }
+   
 }
