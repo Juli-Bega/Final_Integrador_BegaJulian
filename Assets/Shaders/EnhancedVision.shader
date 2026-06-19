@@ -1,10 +1,10 @@
-
 Shader "Custom/EnhancedVision"
 {
     Properties
     {
         _NoiseIntensity ("Noise Intensity", Float) = 0.1
-        _PixelSize ("Pixel Size", Float) = 4
+        _PixelSize ("Pixel Size", Float) = 1
+        _HighlightTexture ("Highlight Texture", 2D) = "black" {}
     }
     SubShader
     {
@@ -20,6 +20,8 @@ Shader "Custom/EnhancedVision"
 
             float _NoiseIntensity;
             float _PixelSize;
+            TEXTURE2D(_HighlightTexture);
+            SAMPLER(sampler_HighlightTexture);
 
             float Random(float2 uv)
             {
@@ -29,13 +31,25 @@ Shader "Custom/EnhancedVision"
             half4 frag(Varyings input) : SV_Target
             {
                 float2 uv = input.texcoord;
-                
-                float2 resolution = _ScreenParams.xy;
-                float2 pixelCount = resolution / _PixelSize;
-                uv = floor(uv * pixelCount) / pixelCount;
-                
+
+                if (_PixelSize > 1)
+                {
+                    float2 pixelCount = _ScreenParams.xy / _PixelSize;
+                    uv = floor(uv * pixelCount) / pixelCount;
+                }
+
                 half4 color = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, uv);
-                
+                half4 highlight = SAMPLE_TEXTURE2D(_HighlightTexture, sampler_HighlightTexture, input.texcoord);
+
+                // Si el pixel tiene color en la highlight texture
+                if (highlight.r > 0.1 || highlight.g > 0.1 || highlight.b > 0.1)
+                {
+                    // Calculamos la luminosidad del color original
+                    float luminance = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
+                    // Aplicamos esa luminosidad al color del highlight
+                    return half4(highlight.rgb * luminance, 1);
+                }
+
                 float grey = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
                 float noise = Random(uv + _Time.y) * _NoiseIntensity;
                 grey = saturate(grey + noise);
