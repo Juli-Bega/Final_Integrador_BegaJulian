@@ -5,9 +5,17 @@ public class EnhancedVisionRendererFeature : ScriptableRendererFeature
 {
     public Shader shader;
 
+    [Range(0f, 1f)]
+    public float noiseIntensity = 0.1f;
+
+    [Range(1f, 10f)]
+    public float pixelSize = 1f;
+
     private Material _material;
     private EnhancedVisionRenderPass _pass;
 
+    private static readonly int NoiseIntensityId = Shader.PropertyToID("_NoiseIntensity");
+    private static readonly int PixelSizeId = Shader.PropertyToID("_PixelSize");
 
     public override void Create()
     {
@@ -17,6 +25,9 @@ public class EnhancedVisionRendererFeature : ScriptableRendererFeature
         if (_material == null)
             _material = new Material(shader);
 
+        _material.SetFloat(NoiseIntensityId, noiseIntensity);
+        _material.SetFloat(PixelSizeId, pixelSize);
+        Debug.Log("PixelSize seteado: " + _material.GetFloat(PixelSizeId));
         _pass = new EnhancedVisionRenderPass(_material);
     }
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
