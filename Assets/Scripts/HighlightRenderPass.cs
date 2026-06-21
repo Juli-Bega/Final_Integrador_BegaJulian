@@ -69,30 +69,12 @@ public class HighlightRenderPass : ScriptableRenderPass
     }
 
     private RendererListDesc CreateRendererListDesc(
-    UniversalCameraData cameraData,
-    UniversalRenderingData renderingData,
-    UniversalLightData lightData,
-    int layer,
-    Material overrideMaterial)
+     UniversalCameraData cameraData,
+     UniversalRenderingData renderingData,
+     UniversalLightData lightData,
+     int layer,
+     Material overrideMaterial)
     {
-        var sortingSettings = new SortingSettings(cameraData.camera)
-        {
-            criteria = SortingCriteria.CommonOpaque
-        };
-
-        var drawingSettings = RenderingUtils.CreateDrawingSettings(
-            new ShaderTagId("UniversalForward"),
-            renderingData,
-            cameraData,
-            lightData,
-            SortingCriteria.CommonOpaque);
-
-        drawingSettings.overrideMaterial = overrideMaterial;
-
-        var filteringSettings = new FilteringSettings(
-            RenderQueueRange.opaque,
-            1 << layer);
-
         return new RendererListDesc(
             new ShaderTagId("UniversalForward"),
             renderingData.cullResults,
@@ -105,6 +87,7 @@ public class HighlightRenderPass : ScriptableRenderPass
             overrideMaterialPassIndex = 0
         };
     }
+
     public void Dispose()
     {
         _highlightRT?.Release();

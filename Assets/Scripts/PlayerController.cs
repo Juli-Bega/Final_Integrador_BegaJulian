@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController _characterController;
     private Vector3 _currentVelocity;
     private float _verticalRotation;
-    private bool _isEnhancedVisionActive = true;
+    private bool _isEnhancedVisionActive = false;
 
     private void Awake()
     {
