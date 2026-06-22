@@ -28,6 +28,12 @@ public class VisionCone : MonoBehaviour
     {
         _meshRenderer.enabled = visible;
     }
+    public void SetConeParameters(float range, float angle)
+    {
+        _range = range;
+        _angle = angle;
+        DrawCone();
+    }
 
     public void DrawCone()
     {

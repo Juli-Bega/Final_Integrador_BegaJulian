@@ -45,11 +45,14 @@ public class NPCController : MonoBehaviour
     private enum NPCState { Patrol, Suspicious, Detected }
     private NPCState _currentState = NPCState.Patrol;
 
+    private VisionCone _visionCone;
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindWithTag("Player").transform;
         _playerController = _player.GetComponent<PlayerController>();
+        _visionCone = GetComponentInChildren<VisionCone>();
     }
 
     private void Start()
@@ -57,6 +60,9 @@ public class NPCController : MonoBehaviour
         _agent.speed = _patrolSpeed;
         _currentWaypointIndex = 0;
         _agent.SetDestination(_waypoints[_currentWaypointIndex].position);
+
+        if (_visionCone != null)
+            _visionCone.SetConeParameters(_visionRange, _coneAngle);
     }
 
     private void Update()
@@ -68,6 +74,7 @@ public class NPCController : MonoBehaviour
 
     private void UpdateDetection()
     {
+        Debug.Log("Alert Level: " + _alertLevel);
         if (!IsPlayerInCone())
         {
             if (_currentState != NPCState.Suspicious)
