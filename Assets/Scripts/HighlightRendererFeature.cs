@@ -7,14 +7,15 @@ public class HighlightRendererFeature : ScriptableRendererFeature
 {
     public Material enemyMaterial;
     public Material objectiveMaterial;
+    public Material coneMaterial;
     public RenderTexture highlightRT;
 
     private HighlightRenderPass _pass;
 
     public override void Create()
     {
-        if (enemyMaterial == null || objectiveMaterial == null || highlightRT == null) return;
-        _pass = new HighlightRenderPass(enemyMaterial, objectiveMaterial, highlightRT);
+        if (enemyMaterial == null || objectiveMaterial == null || coneMaterial == null || highlightRT == null) return;
+        _pass = new HighlightRenderPass(enemyMaterial, objectiveMaterial, coneMaterial, highlightRT);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)

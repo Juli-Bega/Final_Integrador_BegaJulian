@@ -2,14 +2,15 @@ Shader "Custom/Highlight"
 {
     Properties
     {
-        _HighlightColor ("Highlight Color", Color) = (1, 0, 0, 1)
+        _HighlightColor ("Highlight Color", Color) = (1, 0, 0, 0.3)
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue"="Transparent" }
         ZTest Always
         ZWrite Off
         Cull Off
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {

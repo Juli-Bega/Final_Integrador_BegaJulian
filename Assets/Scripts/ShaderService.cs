@@ -6,6 +6,7 @@ public class ShaderService : MonoBehaviour
     [SerializeField] private UniversalRendererData _rendererData;
 
     private EnhancedVisionRendererFeature _enhancedVisionFeature;
+    private VisionCone[] _visionCones;
 
     private void Awake()
     {
@@ -20,11 +21,15 @@ public class ShaderService : MonoBehaviour
 
         if (_enhancedVisionFeature == null)
             Debug.LogError("ShaderService: No se encontró el enhancedVisionRendererFeature.");
+
+        _visionCones = FindObjectsByType<VisionCone>(FindObjectsSortMode.None);
     }
 
     public void VisionState(bool state)
     {
         _enhancedVisionFeature.EnableVision(state);
+
+        foreach (var cone in _visionCones)
+            cone.SetVisible(state);
     }
-   
 }
