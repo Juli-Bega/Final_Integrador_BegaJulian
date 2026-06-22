@@ -27,11 +27,20 @@ public class PlayerController : MonoBehaviour
     private float _verticalRotation;
     private bool _isEnhancedVisionActive = false;
 
+    public enum PlayerMovementState
+    {
+        Idle,
+        Crouching,
+        Walking,
+        Running
+    }
+    public PlayerMovementState MovementState { get; private set; }
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        MovementState = PlayerMovementState.Walking;
     }
 
     private System.Collections.IEnumerator Start()
