@@ -17,7 +17,7 @@ MonoBehaviour:
   highlightRT: {fileID: 8400000, guid: c4b2a715bcbecc343af4d8c6423f378b, type: 2}
   noiseIntensity: 0.162
   pixelSize: 2.4
---- !u!114 &-7351679430601322576
+--- !u!114 &-936702251438317576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,6 +32,7 @@ MonoBehaviour:
   m_Active: 1
   enemyMaterial: {fileID: 2100000, guid: 95ae93fd0cbcadf4aa62085b517dcfb5, type: 2}
   objectiveMaterial: {fileID: 2100000, guid: 257dffece4e1b4d4e852688f16013bdf, type: 2}
+  coneMaterial: {fileID: 2100000, guid: 9a6c37ac6a1bc174eba5ed52e34e232f, type: 2}
   highlightRT: {fileID: 8400000, guid: c4b2a715bcbecc343af4d8c6423f378b, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -59,9 +60,9 @@ MonoBehaviour:
     probeVolumeBlendStatesCS: {fileID: 7200000, guid: b9a23f869c4fd45f19c5ada54dd82176, type: 3}
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
-  - {fileID: -7351679430601322576}
+  - {fileID: -936702251438317576}
   - {fileID: -8605729548724939384}
-  m_RendererFeatureMap: ad6b866f10d7b46cb04f763c8296f99988d52a0f924e9288
+  m_RendererFeatureMap: ad6b866f10d7b46cf8dfb5e2432a00f388d52a0f924e9288
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
