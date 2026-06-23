@@ -20,8 +20,6 @@ public class ShaderService : MonoBehaviour
         }
 
         if (_enhancedVisionFeature == null)
-            Debug.LogError("ShaderService: No se encontró el enhancedVisionRendererFeature.");
-
         _visionCones = FindObjectsByType<VisionCone>(FindObjectsSortMode.None);
     }
 

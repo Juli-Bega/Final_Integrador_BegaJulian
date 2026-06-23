@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,24 +9,24 @@ public class NPCController : MonoBehaviour
     [SerializeField] private float _waypointStopDistance = 0.5f;
     [SerializeField] private bool _loopWaypoints = false;
 
-    [Header("Movimiento")]
+    [Header("Movement")]
     [SerializeField] private float _patrolSpeed = 2f;
     [SerializeField] private float _suspiciousSpeed = 4f;
 
-    [Header("Detección")]
+    [Header("Detection")]
     [SerializeField] private float _visionRange = 10f;
     [SerializeField] private float _coneAngle = 90f;
     [SerializeField] private float _alertSpeed = 10f;
     [SerializeField] private float _alertDecaySpeed = 5f;
     [SerializeField] private float _suspiciousThreshold = 50f;
 
-    [Header("Pesos de movimiento")]
+    [Header("Movement Weights")]
     [SerializeField] private float _weightIdle = 0.1f;
     [SerializeField] private float _weightCrouching = 0.2f;
     [SerializeField] private float _weightWalking = 0.5f;
     [SerializeField] private float _weightRunning = 1f;
 
-    [Header("Posición sospechosa")]
+    [Header("Suspicious")]
     [SerializeField] private float _positionUpdateInterval = 0.5f;
     [SerializeField] private float _positionUpdateThreshold = 30f;
     [SerializeField] private float _lookAroundDuration = 3f;
@@ -35,6 +34,7 @@ public class NPCController : MonoBehaviour
     private NavMeshAgent _agent;
     private Transform _player;
     private PlayerController _playerController;
+    private VisionCone _visionCone;
 
     private float _alertLevel = 0f;
     private int _currentWaypointIndex = 0;
@@ -44,8 +44,6 @@ public class NPCController : MonoBehaviour
 
     private enum NPCState { Patrol, Suspicious, Detected }
     private NPCState _currentState = NPCState.Patrol;
-
-    private VisionCone _visionCone;
 
     private void Awake()
     {
@@ -74,7 +72,6 @@ public class NPCController : MonoBehaviour
 
     private void UpdateDetection()
     {
-        Debug.Log("Alert Level: " + _alertLevel);
         if (!IsPlayerInCone())
         {
             if (_currentState != NPCState.Suspicious)
@@ -251,6 +248,6 @@ public class NPCController : MonoBehaviour
     private void OnDetected()
     {
         _agent.isStopped = true;
-        Debug.Log("DETECTADO - Game Over");
+        Debug.Log("DETECTED - Game Over");
     }
 }

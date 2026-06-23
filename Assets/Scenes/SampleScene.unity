@@ -166,11 +166,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _moveSpeed: 3
+  _sprintSpeed: 6
+  _crouchSpeed: 1.5
   _acceleration: 10
   _deceleration: 15
   _cameraTransform: {fileID: 330585546}
   _mouseSensitivity: 0.1
   _verticalClamp: 80
+  _crouchCameraOffset: -0.5
+  _crouchCameraSpeed: 5
+  _walkBobFrequency: 7
+  _walkBobAmplitudeY: 0.06
+  _walkBobAmplitudeX: 0.03
+  _runBobFrequency: 12
+  _runBobAmplitudeY: 0.1
+  _runBobAmplitudeX: 0.05
   _shaderService: {fileID: 1043568059}
   _gravity: -9.8
 --- !u!143 &57129291
