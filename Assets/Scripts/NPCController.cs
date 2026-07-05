@@ -248,6 +248,6 @@ public class NPCController : MonoBehaviour
     private void OnDetected()
     {
         _agent.isStopped = true;
-        Debug.Log("DETECTED - Game Over");
+        LevelManager.Instance.PlayerDetected();
     }
 }
