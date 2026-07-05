@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     [Header("Gravity")]
     [SerializeField] private float _gravity = -9.8f;
 
+    [Header("Interaction")]
+    [SerializeField] private float _interactionRange = 2f;
+
     private float _verticalVelocity;
     private CharacterController _characterController;
     private Vector3 _currentVelocity;
@@ -163,6 +166,23 @@ public class PlayerController : MonoBehaviour
         {
             _isEnhancedVisionActive = !_isEnhancedVisionActive;
             _shaderService.VisionState(_isEnhancedVisionActive);
+        }
+
+        if (Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            TryInteract();
+        }
+    }
+
+    private void TryInteract()
+    {
+        Ray ray = new Ray(_cameraTransform.position, _cameraTransform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, _interactionRange))
+        {
+            Button button = hit.collider.GetComponent<Button>();
+            if (button != null)
+                button.Interact();
         }
     }
 }
