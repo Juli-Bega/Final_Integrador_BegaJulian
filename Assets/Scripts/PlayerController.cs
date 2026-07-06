@@ -19,6 +19,13 @@ public class PlayerController : MonoBehaviour
     [Header("Crouch")]
     [SerializeField] private float _crouchCameraOffset = -0.5f;
     [SerializeField] private float _crouchCameraSpeed = 5f;
+    [SerializeField] private float _standingHeight = 2f;
+    [SerializeField] private float _crouchHeight = 1f;
+    [SerializeField] private float _standingRadius = 0.5f;
+    [SerializeField] private float _crouchRadius = 0.3f;
+    [SerializeField] private LayerMask _ceilingMask;
+
+    private bool _isCrouching = false;
 
     [Header("Camera Bobbing - Walking")]
     [SerializeField] private float _walkBobFrequency = 2f;
@@ -88,7 +95,25 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        bool isCrouching = Keyboard.current.leftCtrlKey.isPressed;
+        bool wantsToCrouch = Keyboard.current.leftCtrlKey.isPressed;
+
+        if (wantsToCrouch && !_isCrouching)
+        {
+            _isCrouching = true;
+            _characterController.height = _crouchHeight;
+            _characterController.radius = _crouchRadius;
+            _characterController.center = new Vector3(0, _crouchHeight / 2, 0);
+        }
+        else if (!wantsToCrouch && _isCrouching && CanStandUp())
+        {
+            _isCrouching = false;
+            _characterController.height = _standingHeight;
+            _characterController.radius = _standingRadius;
+            _characterController.center = new Vector3(0, _standingHeight / 2, 0);
+        }
+
+        bool isCrouching = _isCrouching;
+
         bool isSprinting = Keyboard.current.leftShiftKey.isPressed && !isCrouching;
 
         Vector2 input = new Vector2(
@@ -122,7 +147,7 @@ public class PlayerController : MonoBehaviour
         _verticalRotation -= mouseDelta.y * _mouseSensitivity;
         _verticalRotation = Mathf.Clamp(_verticalRotation, -_verticalClamp, _verticalClamp);
 
-        bool isCrouching = Keyboard.current.leftCtrlKey.isPressed;
+        bool isCrouching = _isCrouching;
         float targetCameraY = _cameraBaseY + (isCrouching ? _crouchCameraOffset : 0f);
 
         bool isMoving = _currentVelocity.magnitude > 0.1f;
@@ -183,5 +208,11 @@ public class PlayerController : MonoBehaviour
             IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
             interactable?.Interact();
         }
+    }
+    private bool CanStandUp()
+    {
+        Vector3 rayStart = transform.position + Vector3.up * _crouchHeight;
+        float rayDistance = _standingHeight - _crouchHeight;
+        return !Physics.Raycast(rayStart, Vector3.up, rayDistance, _ceilingMask);
     }
 }
