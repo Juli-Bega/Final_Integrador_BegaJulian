@@ -4,7 +4,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] private GameObject _doorObject;
-    [SerializeField] private Button[] _buttons;
+    [SerializeField] private InteractableButton[] _buttons;
     [SerializeField] private float _openHeight = 3f;
     [SerializeField] private float _moveSpeed = 2f;
 
@@ -14,8 +14,8 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        foreach (var button in _buttons)
-            button.SetDoor(this);
+        foreach (var InteractableButton in _buttons)
+            InteractableButton.SetDoor(this);
 
         _closedPosition = _doorObject.transform.localPosition;
         _openPosition = _closedPosition + Vector3.up * _openHeight;
@@ -26,9 +26,9 @@ public class Door : MonoBehaviour
 
     public void OnButtonChanged()
     {
-        foreach (var button in _buttons)
+        foreach (var InteractableButton in _buttons)
         {
-            if (!button.IsActivated)
+            if (!InteractableButton.IsActivated)
             {
                 Close();
                 return;

@@ -8,6 +8,10 @@ public class LevelManager : MonoBehaviour
     private int _totalCollectibles = 0;
     private int _collectedCount = 0;
 
+    public int CollectedCount => _collectedCount;
+    public int TotalCollectibles => _totalCollectibles;
+
+
     private void Awake()
     {
         if (Instance != null)

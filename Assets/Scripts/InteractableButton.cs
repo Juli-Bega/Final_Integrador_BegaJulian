@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Button : MonoBehaviour
+public class InteractableButton : MonoBehaviour, IInteractable
 {
     [SerializeField] private Material _activeMaterial;
     [SerializeField] private Material _inactiveMaterial;

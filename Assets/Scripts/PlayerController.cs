@@ -180,9 +180,8 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, _interactionRange))
         {
-            Button button = hit.collider.GetComponent<Button>();
-            if (button != null)
-                button.Interact();
+            IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
+            interactable?.Interact();
         }
     }
 }

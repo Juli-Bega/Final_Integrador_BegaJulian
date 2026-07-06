@@ -1,18 +1,15 @@
 using UnityEngine;
 
-public class CollectibleObject : MonoBehaviour
+public class CollectibleObject : MonoBehaviour, IInteractable
 {
     private void Start()
     {
         LevelManager.Instance.RegisterCollectible();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Interact()
     {
-        if (other.CompareTag("Player"))
-        {
-            LevelManager.Instance.CollectibleCollected();
-            gameObject.SetActive(false);
-        }
+        LevelManager.Instance.CollectibleCollected();
+        gameObject.SetActive(false);
     }
 }
