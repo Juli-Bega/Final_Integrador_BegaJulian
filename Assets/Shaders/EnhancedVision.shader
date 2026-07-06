@@ -44,9 +44,7 @@ Shader "Custom/EnhancedVision"
                 // Si el pixel tiene color en la highlight texture
                 if (highlight.r > 0.1 || highlight.g > 0.1 || highlight.b > 0.1)
                 {
-                    // Calculamos la luminosidad del color original
-                    float luminance = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
-                    // Aplicamos esa luminosidad al color del highlight
+                    float luminance = max(color.r * 0.299 + color.g * 0.587 + color.b * 0.114, 0.4);
                     return half4(highlight.rgb * luminance, 1);
                 }
 
