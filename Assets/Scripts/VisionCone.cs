@@ -11,8 +11,6 @@ public class VisionCone : MonoBehaviour
 
     private void Start()
     {
-        _mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = _mesh;
         DrawCone();
     }
 
@@ -22,6 +20,8 @@ public class VisionCone : MonoBehaviour
     {
         _meshRenderer = GetComponent<MeshRenderer>();
         _meshRenderer.enabled = false;
+        _mesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = _mesh;
     }
 
     public void SetVisible(bool visible)
