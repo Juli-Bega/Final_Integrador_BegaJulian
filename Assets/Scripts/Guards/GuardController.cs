@@ -49,9 +49,12 @@ public class GuardController : MonoBehaviour
     private bool _hasLastKnownPosition = false;
     private float _positionUpdateTimer = 0f;
 
-    private enum GuardState { Patrol, Suspicious, Detected }
+ 
+    public enum GuardState { Patrol, Suspicious, Detected }
     private GuardState _currentState = GuardState.Patrol;
-
+    public float AlertLevel => _alertLevel;
+    public GuardState CurrentState => _currentState;
+    
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
