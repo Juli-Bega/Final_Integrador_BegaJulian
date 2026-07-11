@@ -74,6 +74,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.Instance != null && PauseManager.Instance.IsPaused)
+            return;
+
         HandleMovement();
         HandleCamera();
         HandleInput();
@@ -176,17 +179,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
-
+        
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             _isEnhancedVisionActive = !_isEnhancedVisionActive;
