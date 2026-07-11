@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CollectibleObject : MonoBehaviour, IInteractable
 {
-    private void Start()
+    private void Awake()
     {
         LevelManager.Instance.RegisterCollectible();
     }
