@@ -4,24 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    public static PauseManager Instance { get; private set; }
-
     [SerializeField] private GameObject _pausePanel;
 
     public bool IsPaused { get; private set; }
 
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
-
     private void Update()
     {
+        if (UIManager.Instance.IsGameOver) return;
+
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             if (IsPaused) Resume();

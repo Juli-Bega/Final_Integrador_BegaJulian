@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
 
     public void PlayerDetected()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        UIManager.Instance.ShowGameOver();
     }
 
     public void CompleteLevel()

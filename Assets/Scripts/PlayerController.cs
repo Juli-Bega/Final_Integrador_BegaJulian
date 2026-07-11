@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (PauseManager.Instance != null && PauseManager.Instance.IsPaused)
+        if (UIManager.Instance.IsGameplayBlocked)
             return;
 
         HandleMovement();
