@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
 
     public void CompleteLevel()
     {
-        Debug.Log("Level Complete - Collected: " + _collectedCount + "/" + _totalCollectibles);
+        UIManager.Instance.ShowVictory(_collectedCount, _totalCollectibles);
     }
+
 }

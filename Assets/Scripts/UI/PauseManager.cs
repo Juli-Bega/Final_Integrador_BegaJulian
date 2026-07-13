@@ -17,6 +17,7 @@ public class PauseManager : MonoBehaviour
             if (IsPaused) Resume();
             else Pause();
         }
+        if (UIManager.Instance.IsGameOver || UIManager.Instance.IsVictory) return;
     }
 
     public void Pause()
@@ -51,4 +52,5 @@ public class PauseManager : MonoBehaviour
         Application.Quit();
 #endif
     }
+
 }
