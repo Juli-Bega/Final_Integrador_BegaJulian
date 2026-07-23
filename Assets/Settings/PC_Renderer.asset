@@ -15,8 +15,8 @@ MonoBehaviour:
   m_Active: 0
   shader: {fileID: 4800000, guid: 821442162ae795848a021282cdcbb061, type: 3}
   highlightRT: {fileID: 8400000, guid: c4b2a715bcbecc343af4d8c6423f378b, type: 2}
-  noiseIntensity: 0.162
-  pixelSize: 2.4
+  noiseIntensity: 0.114
+  pixelSize: 2
 --- !u!114 &-936702251438317576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,10 +29,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38bbbb1e3cffb5b4a922e37b449cfbd2, type: 3}
   m_Name: HighlightRendererFeature
   m_EditorClassIdentifier: Assembly-CSharp::HighlightRendererFeature
-  m_Active: 1
-  enemyMaterial: {fileID: 2100000, guid: 95ae93fd0cbcadf4aa62085b517dcfb5, type: 2}
-  objectiveMaterial: {fileID: 2100000, guid: 257dffece4e1b4d4e852688f16013bdf, type: 2}
-  coneMaterial: {fileID: 2100000, guid: 9a6c37ac6a1bc174eba5ed52e34e232f, type: 2}
+  m_Active: 0
+  highlightTypes:
+  - name: Enemies
+    layers:
+      serializedVersion: 2
+      m_Bits: 64
+    material: {fileID: 2100000, guid: 95ae93fd0cbcadf4aa62085b517dcfb5, type: 2}
+  - name: Cone
+    layers:
+      serializedVersion: 2
+      m_Bits: 256
+    material: {fileID: 2100000, guid: 9a6c37ac6a1bc174eba5ed52e34e232f, type: 2}
+  - name: Objective
+    layers:
+      serializedVersion: 2
+      m_Bits: 128
+    material: {fileID: 2100000, guid: 257dffece4e1b4d4e852688f16013bdf, type: 2}
   highlightRT: {fileID: 8400000, guid: c4b2a715bcbecc343af4d8c6423f378b, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:

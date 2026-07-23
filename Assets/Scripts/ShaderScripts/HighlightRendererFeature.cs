@@ -1,21 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Rendering.RenderGraphModule;
 
 public class HighlightRendererFeature : ScriptableRendererFeature
 {
-    public Material enemyMaterial;
-    public Material objectiveMaterial;
-    public Material coneMaterial;
+    public List<HighlightType> highlightTypes = new List<HighlightType>();
     public RenderTexture highlightRT;
 
     private HighlightRenderPass _pass;
 
     public override void Create()
     {
-        if (enemyMaterial == null || objectiveMaterial == null || coneMaterial == null || highlightRT == null) return;
-        _pass = new HighlightRenderPass(enemyMaterial, objectiveMaterial, coneMaterial, highlightRT);
+        if (highlightRT == null || highlightTypes.Count == 0) return;
+        _pass = new HighlightRenderPass(highlightTypes, highlightRT);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
