@@ -3,18 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class VisionCone : MonoBehaviour
 {
-    [SerializeField] private float _range = 10f;
-    [SerializeField] private float _angle = 90f;
     [SerializeField] private int _rayCount = 30;
+    [SerializeField] private LayerMask _obstacleMask;
+    [SerializeField] private float _updateInterval = 0.1f;
 
     private Mesh _mesh;
-
-    private void Start()
-    {
-        DrawCone();
-    }
-
     private MeshRenderer _meshRenderer;
+    private float _range;
+    private float _angle;
+    private float _updateTimer;
 
     private void Awake()
     {
@@ -24,10 +21,17 @@ public class VisionCone : MonoBehaviour
         GetComponent<MeshFilter>().mesh = _mesh;
     }
 
-    public void SetVisible(bool visible)
+    private void Update()
     {
-        _meshRenderer.enabled = visible;
+        if (!_meshRenderer.enabled) return;
+
+        _updateTimer += Time.deltaTime;
+        if (_updateTimer < _updateInterval) return;
+
+        _updateTimer = 0f;
+        DrawCone();
     }
+
     public void SetConeParameters(float range, float angle)
     {
         _range = range;
@@ -35,7 +39,13 @@ public class VisionCone : MonoBehaviour
         DrawCone();
     }
 
-    public void DrawCone()
+    public void SetVisible(bool visible)
+    {
+        _meshRenderer.enabled = visible;
+        if (visible) DrawCone();
+    }
+
+    private void DrawCone()
     {
         Vector3[] vertices = new Vector3[_rayCount + 2];
         int[] triangles = new int[_rayCount * 3];
@@ -49,7 +59,16 @@ public class VisionCone : MonoBehaviour
         {
             float currentAngle = startAngle + angleStep * i;
             float rad = currentAngle * Mathf.Deg2Rad;
-            vertices[i + 1] = new Vector3(Mathf.Sin(rad), 0, Mathf.Cos(rad)) * _range;
+
+            Vector3 localDirection = new Vector3(Mathf.Sin(rad), 0, Mathf.Cos(rad));
+            Vector3 worldDirection = transform.TransformDirection(localDirection);
+
+            float distance = _range;
+
+            if (Physics.Raycast(transform.position, worldDirection, out RaycastHit hit, _range, _obstacleMask))
+                distance = hit.distance;
+
+            vertices[i + 1] = localDirection * distance;
         }
 
         for (int i = 0; i < _rayCount; i++)
@@ -59,6 +78,7 @@ public class VisionCone : MonoBehaviour
             triangles[i * 3 + 2] = i + 2;
         }
 
+        _mesh.Clear();
         _mesh.vertices = vertices;
         _mesh.triangles = triangles;
         _mesh.RecalculateNormals();

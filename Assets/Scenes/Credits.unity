@@ -496,7 +496,6 @@ GameObject:
   - component: {fileID: 173225505}
   - component: {fileID: 173225504}
   - component: {fileID: 173225503}
-  - component: {fileID: 173225501}
   m_Layer: 7
   m_Name: Button
   m_TagString: Untagged
@@ -504,22 +503,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &173225501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173225500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f0987bd20be33e498bfe2e17948ccf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Button
-  _activeMaterial: {fileID: 2100000, guid: 60d02ea0ef350cc4aa42cacc65e9e366, type: 2}
-  _inactiveMaterial: {fileID: 2100000, guid: 991b038f52838424c9ea9b5e06af0ccb, type: 2}
-  _lightRenderer: {fileID: 2136130816}
-  _isActivated: 0
 --- !u!4 &173225502
 Transform:
   m_ObjectHideFlags: 0
@@ -1988,7 +1971,6 @@ GameObject:
   - component: {fileID: 1656551419}
   - component: {fileID: 1656551418}
   - component: {fileID: 1656551417}
-  - component: {fileID: 1656551416}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -1996,24 +1978,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1656551416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656551415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12d0ff250acd43444826210cdb6a1117, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Door
-  _doorObject: {fileID: 1656551415}
-  _buttons:
-  - {fileID: 173225501}
-  - {fileID: 0}
-  _openHeight: 3
-  _moveSpeed: 2
 --- !u!65 &1656551417
 BoxCollider:
   m_ObjectHideFlags: 0
