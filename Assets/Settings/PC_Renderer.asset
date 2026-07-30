@@ -17,6 +17,7 @@ MonoBehaviour:
   highlightRT: {fileID: 8400000, guid: c4b2a715bcbecc343af4d8c6423f378b, type: 2}
   noiseIntensity: 0.114
   pixelSize: 2
+  tintColor: {r: 0.8191527, g: 0.87379634, b: 0.9811321, a: 1}
 --- !u!114 &-936702251438317576
 MonoBehaviour:
   m_ObjectHideFlags: 0

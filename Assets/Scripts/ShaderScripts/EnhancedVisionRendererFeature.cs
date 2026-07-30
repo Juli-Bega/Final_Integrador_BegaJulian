@@ -12,12 +12,15 @@ public class EnhancedVisionRendererFeature : ScriptableRendererFeature
     [Range(1f, 20f)]
     public float pixelSize = 1f;
 
+    public Color tintColor = Color.white;
+
     private Material _material;
     private EnhancedVisionRenderPass _pass;
 
     private static readonly int NoiseIntensityId = Shader.PropertyToID("_NoiseIntensity");
     private static readonly int PixelSizeId = Shader.PropertyToID("_PixelSize");
     private static readonly int HighlightTextureId = Shader.PropertyToID("_HighlightTexture");
+    private static readonly int TintColorId = Shader.PropertyToID("_TintColor");
 
     public override void Create()
     {
@@ -28,6 +31,7 @@ public class EnhancedVisionRendererFeature : ScriptableRendererFeature
 
         _material.SetFloat(NoiseIntensityId, noiseIntensity);
         _material.SetFloat(PixelSizeId, pixelSize);
+        _material.SetColor(TintColorId, tintColor);
 
         if (highlightRT != null)
             _material.SetTexture(HighlightTextureId, highlightRT);

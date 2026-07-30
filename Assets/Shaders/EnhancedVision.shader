@@ -2,10 +2,12 @@ Shader "Custom/EnhancedVision"
 {
     Properties
     {
-        _NoiseIntensity ("Noise Intensity", Float) = 0.1
-        _PixelSize ("Pixel Size", Float) = 1
-        _HighlightTexture ("Highlight Texture", 2D) = "black" {}
+    _NoiseIntensity ("Noise Intensity", Float) = 0.1
+    _PixelSize ("Pixel Size", Float) = 1
+    _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
+    _HighlightTexture ("Highlight Texture", 2D) = "black" {}
     }
+    
     SubShader
     {
         Tags { "RenderType"="Opaque" }
@@ -20,6 +22,7 @@ Shader "Custom/EnhancedVision"
 
             float _NoiseIntensity;
             float _PixelSize;
+            float4 _TintColor;
             TEXTURE2D(_HighlightTexture);
             SAMPLER(sampler_HighlightTexture);
 
@@ -51,7 +54,7 @@ Shader "Custom/EnhancedVision"
                 float grey = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
                 float noise = Random(uv + _Time.y) * _NoiseIntensity;
                 grey = saturate(grey + noise);
-                return half4(grey, grey, grey, color.a);
+                return half4(_TintColor.rgb * grey, color.a);
             }
             ENDHLSL
         }
