@@ -53,7 +53,6 @@ public class EnhancedVisionRenderPass : ScriptableRenderPass
         {
             passData.source = destination;
             passData.destination = source;
-            passData.material = null;
 
             builder.UseTexture(passData.source, AccessFlags.Read);
             builder.UseTexture(passData.destination, AccessFlags.Write);

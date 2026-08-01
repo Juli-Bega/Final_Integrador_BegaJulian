@@ -10,7 +10,6 @@ Shader "Custom/EnhancedVision"
     
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
         ZTest Always ZWrite Off Cull Off Blend Off
         Pass
         {

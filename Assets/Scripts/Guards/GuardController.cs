@@ -48,8 +48,8 @@ public class GuardController : MonoBehaviour
     private Vector3 _lastKnownPlayerPosition;
     private bool _hasLastKnownPosition = false;
     private float _positionUpdateTimer = 0f;
+    private bool _isLookingAround = false;
 
- 
     public enum GuardState { Patrol, Suspicious, Detected }
     private GuardState _currentState = GuardState.Patrol;
     public float AlertLevel => _alertLevel;
@@ -107,7 +107,6 @@ public class GuardController : MonoBehaviour
         UpdateLastKnownPosition();
     }
 
-    private bool _isLookingAround = false;
 
     private bool CanSeePlayer()
     {

@@ -179,7 +179,6 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInput()
     {
-        
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
             _isEnhancedVisionActive = !_isEnhancedVisionActive;

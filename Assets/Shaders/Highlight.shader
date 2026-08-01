@@ -6,7 +6,7 @@ Shader "Custom/Highlight"
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" "Queue"="Transparent" }
+        Tags { "Queue"="Transparent" }
         ZTest Always
         ZWrite Off
         Cull Off

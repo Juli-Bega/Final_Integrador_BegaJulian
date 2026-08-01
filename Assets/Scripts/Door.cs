@@ -14,8 +14,8 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        foreach (var InteractableButton in _buttons)
-            InteractableButton.SetDoor(this);
+        foreach (var button in _buttons)
+            button.SetDoor(this);
 
         _closedPosition = _doorObject.transform.localPosition;
         _openPosition = _closedPosition + Vector3.up * _openHeight;
@@ -26,9 +26,9 @@ public class Door : MonoBehaviour
 
     public void OnButtonChanged()
     {
-        foreach (var InteractableButton in _buttons)
+        foreach (var button in _buttons)
         {
-            if (!InteractableButton.IsActivated)
+            if (!button.IsActivated)
             {
                 Close();
                 return;
