@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7817069549698771518}
   - component: {fileID: 5521893329347013440}
   - component: {fileID: 4458726923754084763}
-  - component: {fileID: 5300851520140055494}
   m_Layer: 7
   m_Name: Vase (5)
   m_TagString: Untagged
@@ -113,18 +112,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5300851520140055494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268009907381201079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cd36e8ebb5fd04a970de04ed612ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
 --- !u!1 &291383434592665562
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +124,6 @@ GameObject:
   - component: {fileID: 5836928801500278980}
   - component: {fileID: 3963182057638824253}
   - component: {fileID: 3705226862353135370}
-  - component: {fileID: 654426451560826653}
   m_Layer: 7
   m_Name: Vase (3)
   m_TagString: Untagged
@@ -238,18 +224,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &654426451560826653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291383434592665562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cd36e8ebb5fd04a970de04ed612ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
 --- !u!1 &930254459953502643
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +236,6 @@ GameObject:
   - component: {fileID: 327576432679618020}
   - component: {fileID: 6890355330949930978}
   - component: {fileID: 8062705276015166470}
-  - component: {fileID: 2673822857720924854}
   m_Layer: 7
   m_Name: Vase (4)
   m_TagString: Untagged
@@ -363,18 +336,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2673822857720924854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 930254459953502643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cd36e8ebb5fd04a970de04ed612ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
 --- !u!1 &3373485060757133378
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4765707147278142447}
+  - component: {fileID: 601626346141904799}
   m_Layer: 0
   m_Name: Objective
   m_TagString: Untagged
@@ -412,6 +374,18 @@ Transform:
   - {fileID: 8021214056025938763}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &601626346141904799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373485060757133378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0cd36e8ebb5fd04a970de04ed612ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
 --- !u!1 &4020703271326265569
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +398,6 @@ GameObject:
   - component: {fileID: 7683988487122454364}
   - component: {fileID: 3190543809840030927}
   - component: {fileID: 3139291164235200615}
-  - component: {fileID: 8513087633201312334}
   m_Layer: 7
   m_Name: Vase
   m_TagString: Untagged
@@ -525,18 +498,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8513087633201312334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4020703271326265569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cd36e8ebb5fd04a970de04ed612ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
 --- !u!1 &4586556292566065177
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +510,6 @@ GameObject:
   - component: {fileID: 7469579870088956116}
   - component: {fileID: 5705898187656080082}
   - component: {fileID: 790217617665690142}
-  - component: {fileID: 4089938643361416182}
   m_Layer: 7
   m_Name: Vase (1)
   m_TagString: Untagged
@@ -650,18 +610,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4089938643361416182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4586556292566065177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cd36e8ebb5fd04a970de04ed612ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject
 --- !u!1 &4801247958459843751
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +622,6 @@ GameObject:
   - component: {fileID: 3120867591761265144}
   - component: {fileID: 3182812828895300960}
   - component: {fileID: 4873080259053030240}
-  - component: {fileID: 4247868593568651401}
   m_Layer: 7
   m_Name: Vase (2)
   m_TagString: Untagged
@@ -775,15 +722,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4247868593568651401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4801247958459843751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0cd36e8ebb5fd04a970de04ed612ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectibleObject

@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
     public void ShowVictory(int collected, int total)
     {
         _isLevelOver = true;
-        _collectiblesText.text = $"Objetos recolectados: {collected}/{total}";
+        _collectiblesText.text = $"Objetivos recolectados: {collected}/{total}";
         StartCoroutine(ShowPanelWithFade(_victoryPanel));
     }
 
