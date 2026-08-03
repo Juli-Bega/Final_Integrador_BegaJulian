@@ -67,6 +67,7 @@ public class GuardController : MonoBehaviour
     {
         _agent.speed = _patrolSpeed;
         _currentWaypointIndex = 0;
+        if (_waypoints.Length != 0)
         _agent.SetDestination(_waypoints[_currentWaypointIndex].position);
 
         if (_visionCone != null)
