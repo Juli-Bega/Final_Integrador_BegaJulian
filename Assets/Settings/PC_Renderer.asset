@@ -47,6 +47,11 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 128
     material: {fileID: 2100000, guid: 257dffece4e1b4d4e852688f16013bdf, type: 2}
+  - name: Exit
+    layers:
+      serializedVersion: 2
+      m_Bits: 512
+    material: {fileID: 2100000, guid: f8cc778d0a07c084192ee1dfd98c88f7, type: 2}
   highlightRT: {fileID: 8400000, guid: c4b2a715bcbecc343af4d8c6423f378b, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
