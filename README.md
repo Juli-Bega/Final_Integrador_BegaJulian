@@ -126,7 +126,7 @@ Cada guardia tiene una malla generada por código que representa su campo de vis
 
 **Se recorta contra la geometría.** Cada vértice del arco se posiciona mediante un raycast: si el rayo golpea una pared antes de alcanzar el rango máximo, el vértice se coloca en el punto de impacto. La malla se recalcula a intervalos configurables mientras el cono es visible.
 
-**Sus parámetros vienen del guardia.** El alcance y el ángulo no se configuran en el cono: los recibe del `GuardController`, que es la única fuente de verdad. Así lo que el jugador ve coincide exactamente con el área de detección real.
+**Sus parámetros vienen del guardia.** Se puede editar su alcance, el ángulo, intervalo de deteccion y cantidad de raycasts.
 
 ---
 
