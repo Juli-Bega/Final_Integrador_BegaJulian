@@ -14405,7 +14405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 159137574620104046, guid: ec79272029be91f4c980f65c6e82e9e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.61
+      value: -6.81
       objectReference: {fileID: 0}
     - target: {fileID: 159137574620104046, guid: ec79272029be91f4c980f65c6e82e9e7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14413,7 +14413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 159137574620104046, guid: ec79272029be91f4c980f65c6e82e9e7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.17
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 159137574620104046, guid: ec79272029be91f4c980f65c6e82e9e7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20906,7 +20906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8465850838085796182, guid: ec79272029be91f4c980f65c6e82e9e7, type: 3}
       propertyPath: _showDebugInfo
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8465850838085796182, guid: ec79272029be91f4c980f65c6e82e9e7, type: 3}
       propertyPath: _waypoints.Array.size
