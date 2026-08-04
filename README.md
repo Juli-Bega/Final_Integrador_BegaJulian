@@ -155,12 +155,6 @@ Con la visión activa, cada frame ejecuta esta secuencia:
 4. El resultado llega a pantalla.
 ```
 
-Con la visión inactiva, los pasos 2 y 3 no se ejecutan.
-
-El paso 3 usa dos blits porque no es posible leer y escribir la misma textura en una sola operación de dibujado: la textura temporal rompe esa dependencia.
-
-**La `HighlightRT` no es una capa que se superpone.** Es una tabla de consulta: el paso 2 la llena con siluetas de color sobre fondo transparente, y el paso 3 la lee para decidir qué color dar a cada píxel de la pantalla. Nunca se muestra directamente.
-
 ### 4.2 Highlight.shader
 
 Dibuja los objetos marcados dentro de la Render Texture auxiliar.
@@ -176,15 +170,11 @@ Dibuja los objetos marcados dentro de la Render Texture auxiliar.
 **Render states.** Acá está el núcleo de la mecánica:
 
 ```
-ZTest Always                          → ver a través de paredes
+ZTest Always                          → desactiva la comparación de profundidad
 ZWrite Off                            → no escribe profundidad
 Cull Off                              → el cono es una malla de un solo lado
 Blend SrcAlpha OneMinusSrcAlpha       → permite materiales translúcidos
 ```
-
-`ZTest Always` desactiva la comparación de profundidad: el fragmento se dibuja siempre, sin importar qué haya delante. En el render normal, un guardia detrás de una pared pierde esa comparación y no se dibuja; acá se dibuja igual.
-
-Esa línea, combinada con el hecho de que el pass tiene su propio destino, es lo que produce el efecto: la silueta se registra como información sin pintarse sobre la pantalla.
 
 ### 4.3 EnhancedVision.shader
 
@@ -205,7 +195,7 @@ uv = floor(uv * pixelCount) / pixelCount;
 
 Con una pantalla de 1920 de ancho y `_PixelSize = 8` resultan 240 celdas. Todos los píxeles cuya coordenada escalada caiga dentro de la misma celda leen el mismo punto de la textura, formando un bloque uniforme.
 
-*Lectura de la escena.* Se muestrea `_BlitTexture` con la coordenada — pixelada si corresponde. El color obtenido ya contiene toda la iluminación calculada por los materiales de la escena.
+*Lectura de la escena.* Se muestrea `_BlitTexture` con la coordenada — pixelada si corresponde. 
 
 *Lectura del highlight.* Se muestrea `_HighlightTexture` con la coordenada **original**, sin pixelar, de modo que los highlights conserven bordes nítidos aunque el fondo esté pixelado.
 
@@ -216,11 +206,11 @@ float luminance = max(color.r * 0.299 + color.g * 0.587 + color.b * 0.114, 0.4);
 return half4(highlight.rgb * luminance, 1);
 ```
 
-La **luminancia** es el brillo perceptual del píxel original. Los pesos no son un promedio simple porque la sensibilidad del ojo humano no es uniforme entre canales: es mayor al verde, intermedia al rojo y menor al azul.
+La **luminancia** es el brillo perceptual del píxel original. Estos pesos son el estándar para lograr un brillo o luminancia uniforme según la percepción visual humana y se basan en los coeficientes de Luma.
 
 Multiplicar el color del highlight por esa luminancia produce una escala monocroma de ese color: las zonas iluminadas del objeto quedan claras y las sombreadas oscuras. El objeto conserva el volumen que la iluminación le dio, con el color reemplazado — a diferencia de una silueta plana, que se vería como una mancha sin forma interna.
 
-El `max(..., 0.4)` establece un piso de brillo. Sin él, un objetivo en una zona oscura tendría luminancia cercana a cero y su highlight resultaría ilegible. Dado que los highlights son información de gameplay, se prioriza la legibilidad garantizada por sobre la fidelidad lumínica exacta.
+En el los pixeles del highlight usamos el `max(..., 0.4)` que establece un piso de brillo. Sin él, un objetivo en una zona oscura tendría luminancia cercana a cero y su highlight resultaría ilegible. Dado que los highlights son información de gameplay, se prioriza la legibilidad garantizada por sobre la fidelidad lumínica.
 
 *Fondo.* Si el píxel no está marcado, se convierte a monocromo y se le suma ruido:
 
@@ -245,16 +235,6 @@ float Random(float2 uv)
 El producto punto colapsa la coordenada bidimensional a un escalar único por píxel. El seno lo convierte en un valor oscilante. La multiplicación por un número grande hace que entre píxeles vecinos el resultado salte miles de ciclos de la función, volviéndolo caótico. La parte fraccionaria deja un valor entre 0 y 1 sin correlación aparente con el píxel adyacente.
 
 Es pseudoaleatorio: la misma entrada produce siempre la misma salida. Por eso se suma `_Time.y`, que desplaza la entrada en cada frame y genera grano animado en lugar de estático.
-
-### 4.4 El material invisible del cono
-
-El mesh del cono se dibuja dos veces por frame con dos programas distintos.
-
-En el **render normal**, su `MeshRenderer` usa un material transparente con alpha 0. Atraviesa el pipeline completo, pero la ecuación de blending anula su contribución: el resultado es el fondo intacto.
-
-En el **pass de highlights**, el material override lo sustituye por el translúcido de su tipo, y allí sí deja su marca en la Render Texture.
-
-La alternativa aparentemente más simple —excluir el layer del Culling Mask de la cámara— no funciona: ese culling alimenta también las listas de renderizado del pass propio, por lo que el cono desaparecería de ambos contextos.
 
 ---
 
