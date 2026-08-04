@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
         _cameraBaseY = _cameraTransform.localPosition.y;
     }
 
-    private System.Collections.IEnumerator Start()
+    private IEnumerator Start()
     {
         yield return null;
         _shaderService.VisionState(false);
@@ -115,21 +116,20 @@ public class PlayerController : MonoBehaviour
             _characterController.center = new Vector3(0, _standingHeight / 2, 0);
         }
 
-        bool isCrouching = _isCrouching;
 
-        bool isSprinting = Keyboard.current.leftShiftKey.isPressed && !isCrouching;
+        bool isSprinting = Keyboard.current.leftShiftKey.isPressed && !_isCrouching;
 
         Vector2 input = new Vector2(
             Keyboard.current.dKey.isPressed ? 1 : Keyboard.current.aKey.isPressed ? -1 : 0,
             Keyboard.current.wKey.isPressed ? 1 : Keyboard.current.sKey.isPressed ? -1 : 0
         );
 
-        float currentSpeed = isSprinting ? _sprintSpeed : isCrouching ? _crouchSpeed : _moveSpeed;
+        float currentSpeed = isSprinting ? _sprintSpeed : _isCrouching ? _crouchSpeed : _moveSpeed;
 
         if (input.magnitude == 0)
-            MovementState = isCrouching ? PlayerMovementState.Crouching : PlayerMovementState.Idle;
+            MovementState = _isCrouching ? PlayerMovementState.Crouching : PlayerMovementState.Idle;
         else
-            MovementState = isSprinting ? PlayerMovementState.Running : isCrouching ? PlayerMovementState.Crouching : PlayerMovementState.Walking;
+            MovementState = isSprinting ? PlayerMovementState.Running : _isCrouching ? PlayerMovementState.Crouching : PlayerMovementState.Walking;
 
         Vector3 targetVelocity = (transform.right * input.x + transform.forward * input.y) * currentSpeed;
         float smoothing = input.magnitude > 0 ? _acceleration : _deceleration;
