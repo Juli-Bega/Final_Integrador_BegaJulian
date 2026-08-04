@@ -49,6 +49,8 @@ public class GuardController : MonoBehaviour
     private bool _hasLastKnownPosition = false;
     private float _positionUpdateTimer = 0f;
     private bool _isLookingAround = false;
+    private Vector3 _initialPosition;
+    private Quaternion _initialRotation;
 
     public enum GuardState { Patrol, Suspicious, Detected }
     private GuardState _currentState = GuardState.Patrol;
@@ -61,13 +63,15 @@ public class GuardController : MonoBehaviour
         _player = GameObject.FindWithTag("Player").transform;
         _playerController = _player.GetComponent<PlayerController>();
         _visionCone = GetComponentInChildren<VisionCone>();
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
     }
 
     private void Start()
     {
         _agent.speed = _patrolSpeed;
         _currentWaypointIndex = 0;
-        if (_waypoints.Length != 0)
+        if (_waypoints.Length > 0)
         _agent.SetDestination(_waypoints[_currentWaypointIndex].position);
 
         if (_visionCone != null)
@@ -278,11 +282,18 @@ public class GuardController : MonoBehaviour
         _hasLastKnownPosition = false;
         _currentState = GuardState.Patrol;
         _agent.speed = _patrolSpeed;
+        _agent.isStopped = false;
         GoToClosestWaypoint();
     }
 
     private void GoToClosestWaypoint()
     {
+        if (_waypoints.Length == 0)
+        {
+            _agent.SetDestination(_initialPosition);
+            StartCoroutine(ReturnToInitialRotation());
+            return;
+        }
         float closestDistance = float.MaxValue;
         int closestIndex = 0;
 
@@ -297,6 +308,7 @@ public class GuardController : MonoBehaviour
         }
 
         _currentWaypointIndex = closestIndex;
+
         _agent.SetDestination(_waypoints[_currentWaypointIndex].position);
     }
 
@@ -338,5 +350,24 @@ public class GuardController : MonoBehaviour
             Gizmos.color = CanSeePlayer() ? Color.red : Color.gray;
             Gizmos.DrawLine(transform.position, _player.position);
         }
+    }
+    private IEnumerator ReturnToInitialRotation()
+    {
+        while (_agent.pathPending || _agent.remainingDistance > _waypointStopDistance)
+        {
+            if (_currentState != GuardState.Patrol) yield break;
+            yield return null;
+        }
+
+        while (Quaternion.Angle(transform.rotation, _initialRotation) > 1f)
+        {
+            if (_currentState != GuardState.Patrol) yield break;
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, _initialRotation,
+                _lookAroundSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        transform.rotation = _initialRotation;
     }
 }

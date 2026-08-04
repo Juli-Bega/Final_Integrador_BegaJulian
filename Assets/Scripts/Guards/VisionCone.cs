@@ -81,6 +81,5 @@ public class VisionCone : MonoBehaviour
         _mesh.Clear();
         _mesh.vertices = vertices;
         _mesh.triangles = triangles;
-        _mesh.RecalculateNormals();
     }
 }
