@@ -21,16 +21,16 @@ public class TriggerMessages : MonoBehaviour
 
     private IEnumerator ShowMessage()
     {
-        label.ForceMeshUpdate();
+        _label.ForceMeshUpdate();
         int total = _label.textInfo.characterCount;
 
         for (int i = 1; i <= total; i++)
         {
-            label.maxVisibleCharacters = i;
+            _label.maxVisibleCharacters = i;
             yield return new WaitForSeconds(1f / _charactersPerSecond);
         }
 
         yield return new WaitForSeconds(_timeToDisappear);
-        label.maxVisibleCharacters = 0;
+        _label.maxVisibleCharacters = 0;
     }
 }

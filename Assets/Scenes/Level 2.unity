@@ -1321,8 +1321,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101740335}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.512, y: 0, z: 53.92694}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.578, y: -3.8, z: -0.17305756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1364,7 +1364,7 @@ Transform:
   - {fileID: 299157315}
   - {fileID: 367825812}
   - {fileID: 1145956870}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1586106983}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &105284171
 GameObject:
@@ -3235,9 +3235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81367d31106c6b43a8a854d6ce89d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerMessages
-  label: {fileID: 1488824953}
-  charactersPerSecond: 30
-  timeToDisappear: 1.7
+  _label: {fileID: 1488824953}
+  _charactersPerSecond: 30
+  _timeToDisappear: 3
 --- !u!65 &335739468
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7073,9 +7073,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81367d31106c6b43a8a854d6ce89d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerMessages
-  label: {fileID: 1442804162}
-  charactersPerSecond: 30
-  timeToDisappear: 1.7
+  _label: {fileID: 1442804162}
+  _charactersPerSecond: 30
+  _timeToDisappear: 3
 --- !u!65 &799616072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13173,9 +13173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81367d31106c6b43a8a854d6ce89d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerMessages
-  label: {fileID: 939221675}
-  charactersPerSecond: 30
-  timeToDisappear: 1.7
+  _label: {fileID: 939221675}
+  _charactersPerSecond: 30
+  _timeToDisappear: 3
 --- !u!65 &1381660550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15044,6 +15044,7 @@ Transform:
   - {fileID: 90665425}
   - {fileID: 1529295358}
   - {fileID: 2036414009}
+  - {fileID: 101740337}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1592751469
@@ -20162,9 +20163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81367d31106c6b43a8a854d6ce89d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerMessages
-  label: {fileID: 211989560}
-  charactersPerSecond: 30
-  timeToDisappear: 1.7
+  _label: {fileID: 211989560}
+  _charactersPerSecond: 30
+  _timeToDisappear: 3
 --- !u!65 &2094282232
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22369,4 +22370,3 @@ SceneRoots:
   - {fileID: 1049913691}
   - {fileID: 1418300221}
   - {fileID: 2071688216}
-  - {fileID: 101740337}

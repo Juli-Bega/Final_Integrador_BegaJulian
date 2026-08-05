@@ -2189,9 +2189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81367d31106c6b43a8a854d6ce89d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerMessages
-  label: {fileID: 1502404367}
-  charactersPerSecond: 30
-  timeToDisappear: 1.7
+  _label: {fileID: 1502404367}
+  _charactersPerSecond: 30
+  _timeToDisappear: 3
 --- !u!65 &161649423
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3540,9 +3540,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81367d31106c6b43a8a854d6ce89d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerMessages
-  label: {fileID: 1501188187}
-  charactersPerSecond: 35
-  timeToDisappear: 1.8
+  _label: {fileID: 1501188187}
+  _charactersPerSecond: 30
+  _timeToDisappear: 3
 --- !u!65 &289929102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4247,9 +4247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81367d31106c6b43a8a854d6ce89d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerMessages
-  label: {fileID: 1488824953}
-  charactersPerSecond: 30
-  timeToDisappear: 1.7
+  _label: {fileID: 1488824953}
+  _charactersPerSecond: 30
+  _timeToDisappear: 3
 --- !u!65 &335739468
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4685,9 +4685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81367d31106c6b43a8a854d6ce89d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerMessages
-  label: {fileID: 2093691072}
-  charactersPerSecond: 35
-  timeToDisappear: 3.5
+  _label: {fileID: 2093691072}
+  _charactersPerSecond: 30
+  _timeToDisappear: 3
 --- !u!65 &372019065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11041,9 +11041,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81367d31106c6b43a8a854d6ce89d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerMessages
-  label: {fileID: 578115090}
-  charactersPerSecond: 35
-  timeToDisappear: 2.2
+  _label: {fileID: 578115090}
+  _charactersPerSecond: 30
+  _timeToDisappear: 3
 --- !u!65 &1092604665
 BoxCollider:
   m_ObjectHideFlags: 0
