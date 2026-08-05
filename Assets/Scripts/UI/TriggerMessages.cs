@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TriggerMessages : MonoBehaviour
 {
-    [SerializeField] private TMP_Text label;
-    [SerializeField] private float charactersPerSecond = 30f;
-    [SerializeField] private float timeToDisappear = 3f;
+    [SerializeField] private TMP_Text _label;
+    [SerializeField] private float _charactersPerSecond = 30f;
+    [SerializeField] private float _timeToDisappear = 3f;
 
     private void Awake()
     {
-        label.maxVisibleCharacters = 0;
+        _label.maxVisibleCharacters = 0;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,15 +22,15 @@ public class TriggerMessages : MonoBehaviour
     private IEnumerator ShowMessage()
     {
         label.ForceMeshUpdate();
-        int total = label.textInfo.characterCount;
+        int total = _label.textInfo.characterCount;
 
         for (int i = 1; i <= total; i++)
         {
             label.maxVisibleCharacters = i;
-            yield return new WaitForSeconds(1f / charactersPerSecond);
+            yield return new WaitForSeconds(1f / _charactersPerSecond);
         }
 
-        yield return new WaitForSeconds(timeToDisappear);
+        yield return new WaitForSeconds(_timeToDisappear);
         label.maxVisibleCharacters = 0;
     }
 }
