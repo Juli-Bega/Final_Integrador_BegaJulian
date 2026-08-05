@@ -6,7 +6,7 @@ Juego de sigilo en primera persona desarrollado en Unity 6.3 LTS con Universal R
 
 El jugador se infiltra en una instalación vigilada, recupera los objetos de valor y escapa sin ser detectado. Su única herramienta es una **visión aumentada** que revela guardias, objetivos y conos de visión, incluso a través de las paredes.
 
-**[Jugar en itch.io](https://julian-bega.itch.io/agent.o7)** · **[Descargar la build](../../releases)**
+**[Jugar en itch.io](https://julian-bega.itch.io/agent-o7)** · **[Descargar la build](../../releases)**
 
 ---
 
