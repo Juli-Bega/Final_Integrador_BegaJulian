@@ -95,8 +95,7 @@ public class GuardController : MonoBehaviour
             return;
         }
 
-        float distanceFactor = 1f - Mathf.InverseLerp(0, _visionRange,
-            Vector3.Distance(transform.position, _player.position));
+        float distanceFactor = 1f - Mathf.InverseLerp(0, _visionRange,Vector3.Distance(transform.position, _player.position));
 
         Vector3 directionToPlayer = (_player.position - transform.position).normalized;
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
